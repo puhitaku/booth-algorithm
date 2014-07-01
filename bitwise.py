@@ -54,6 +54,7 @@ def TwoComp(n):
 
 def BitShift(n, shift):
     """Shift the bits rightward in arithmetical method.
+    If shift is negative, it shifts the bits leftward.
 
     Arguments:
     n -- Binary number in string
@@ -62,11 +63,15 @@ def BitShift(n, shift):
     Returns: string
     """
 
-    if n[0] == "0":
-        n_ = "".join(["0"] * shift) + n
+    if shift > 0:       #Right shift
+        if n[0] == "0":
+            n_ = "".join(["0"] * shift) + n
+        else:
+            n_ = "".join(["1"] * shift) + n
+        return n_[:len(n)]
     else:
-        n_ = "".join(["1"] * shift) + n
-    return n_[:len(n)]
+        n_ = n + "".join(["0"] * (-shift))
+        return n_[-len(n):]
 
 
 def CalcBoothRecoding(n):

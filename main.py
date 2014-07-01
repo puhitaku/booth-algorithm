@@ -96,7 +96,7 @@ def main():
             print("    " + "P = P >> 1")
 
         p = BitShift(p, 1)
-        print("P = %s\n" % p)
+        print("    " + "P = %s\n" % p)
 
     p = p[:-1]
     print("The answer is: %s" % p)

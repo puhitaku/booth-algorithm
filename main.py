@@ -84,36 +84,37 @@ def GenZeroStr(n):
 
 def main():
     print("This program excecutes Booth's multiplication algorithm.\n")
-    print("Input the bit length of first variable m: ", end="")
+    print("The formula it's going to calculate is:  M * R = ?")
+    print("Input the bit length of first variable M: ", end="")
     mlen = int(input())
-    print("Input the bit length of second variable r: ", end="")
+    print("Input the bit length of second variable R: ", end="")
     rlen = int(input())
 
-    print("Input the number of first variable m: ", end="")
+    print("Input the number of first variable M: ", end="")
     m = int(input())
     if m < 0:
-        m = TwoComp( ("{0:0%db}" % mlen).format(m) )
+        m = TwoComp( ("{0:0%db}" % mlen).format(m) )    #Calculate the two's complement number of m
     else:
-        m = ("{0:0%db}" % mlen).format(m)
+        m = ("{0:0%db}" % mlen).format(m)   #Convert to bits and assign directly
 
-    print("Input the number of second variable r: ", end="")
+    print("Input the number of second variable R: ", end="")
     r = int(input())
     if r < 0:
         r = TwoComp( ("{0:0%db}" % rlen).format(r) )
     else:
         r = ("{0:0%db}" % rlen).format(r)
 
-    ilen = mlen + rlen + 1
-    a = m + GenZeroStr(rlen + 1)
-    s = TwoComp(m) + GenZeroStr(rlen + 1)
-    p = GenZeroStr(mlen) + r + "0"
+    ilen = mlen + rlen + 1                  #The common length of internal variables
+    a = m + GenZeroStr(rlen + 1)            #A: place M in leftmost position. Fill the left bits with 0.
+    s = TwoComp(m) + GenZeroStr(rlen + 1)   #S: place negative M in leftmost position.
+    p = GenZeroStr(mlen) + r + "0"          #P: place R by rightmost 0.
 
     print("Internal variables:")
     print("A = %s" % a)
     print("S = %s" % s)
     print("P = %s\n" % p)
 
-    for i in range(rlen):
+    for i in range(rlen):   #Do operation rlen times
         print("Step %d:" % (i+1))
 
         op = p[-2:]

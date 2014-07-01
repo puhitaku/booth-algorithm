@@ -105,3 +105,29 @@ def GenZeroStr(n):
     """
 
     return "".join(["0"] * n)
+
+def BoothRecToString(s, indent=0):
+    """Convert a Booth recoding number to human-readable string.
+
+    Arguments:
+    s -- String of Booth recoding
+    indent -- Number of spaces in the head of lines (optional)
+
+    Returns: string
+    """
+
+    sp = " " * indent
+    h = []
+    n = []
+    for i in list(s):
+        if   i == "0":
+            h.append(" ")
+            n.append("0")
+        elif i == "1":
+            h.append(" ")
+            n.append("1")
+        elif i == "2":
+            h.append("^")
+            n.append("1")
+    return sp + "".join(h) + "\n" + sp + "".join(n)
+

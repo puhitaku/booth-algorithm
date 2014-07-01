@@ -69,6 +69,27 @@ def BitShift(n, shift):
     return n_[:len(n)]
 
 
+def CalcBoothRecoding(n):
+    """Calculate the Booth recoding number of given n.
+
+    Arguments:
+    n -- Binary number to calculate in string
+
+    Returns: string
+
+    Attention:
+    "2" in returned string represents "1-hat".
+    """
+
+    n_ = [int(x) for x in list(n + "0")]
+    r = []
+    for i in range(len(n)):
+        x = n_[i+1] - n_[i]
+        if x == -1: r.append(2)
+        else:       r.append(x)
+    return "".join([str(x) for x in r])
+
+
 def GenZeroStr(n):
     """Generate a bunch of zeroes.
 

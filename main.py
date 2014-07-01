@@ -1,4 +1,4 @@
-import bitwise
+from bitwise import *
 
 def main():
     print("This program excecutes Booth's multiplication algorithm.\n")

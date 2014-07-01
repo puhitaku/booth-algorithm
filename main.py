@@ -1,4 +1,14 @@
 def BitAdd(m, n, length):
+    """Return m+n in string.
+    
+    Arguments:
+    m -- Binary number in string
+    n -- Same as above
+    length -- The length of returned number (overflowed bit will be ignored)
+
+    Returns: string
+    """
+
     lmin = min(len(m), len(n))
     lmax = max(len(m), len(n))
     c = 0
@@ -29,6 +39,14 @@ def BitAdd(m, n, length):
 
 
 def TwoComp(n):
+    """Return the two's complement of given number.
+
+    Arguments:
+    n -- Binary number in string
+
+    Returns: string
+    """
+
     l = list(n)
     for i in range(len(l)):
         l[i] = "0" if l[i] == "1" else "1"
@@ -36,7 +54,15 @@ def TwoComp(n):
 
 
 def BitShift(n, shift):
-    """Shift the bits rightward in arithmetical method."""
+    """Shift the bits rightward in arithmetical method.
+
+    Arguments:
+    n -- Binary number in string
+    shift -- Number of times to shift
+
+    Returns: string
+    """
+
     if n[0] == "0":
         n_ = "".join(["0"] * shift) + n
     else:
@@ -45,6 +71,14 @@ def BitShift(n, shift):
 
 
 def GenZeroStr(n):
+    """Generate a bunch of zeroes.
+
+    Arguments:
+    n -- Number of zeroes
+
+    Returns: string
+    """
+
     return "".join(["0"] * n)
 
 

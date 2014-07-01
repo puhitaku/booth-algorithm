@@ -110,6 +110,8 @@ def main():
     p = GenZeroStr(mlen) + r + "0"          #P: place R by rightmost 0.
 
     print("Internal variables:")
+    print("M = %s" % m)
+    print("R = %s" % r)
     print("A = %s" % a)
     print("S = %s" % s)
     print("P = %s\n" % p)

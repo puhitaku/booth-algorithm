@@ -12,12 +12,15 @@ I think these codes have serious bugs/ugly syntaxes. Please be aware of that.
 
 ### Usage
 - Booth's multiplication
+
 Run `booth.py`.
 
 - Booth recoding multiplication
+
 Run `booth_recoding.py`.
 
 - (Non-)restoring division
+
 Run `division.py`.
 
 ### Example

@@ -1,10 +1,16 @@
 Booth-algorithm
 ===============
 
-An implementation of Booth's multiplication algorithm in Python.
+An implementation of Booth's multiplication algorithm (and some other algorithms) in Python.
+
+### Purpose
+This repository is for understanding multiplication/division algorithm executed in digital computers.
+
+`bitwise.py`, a file in this repo, has some implementations for bitwise calculation (e.g. two's complement, bit shift) in Python. I open this repo to the public and I encourage you to use these codes for any purpose including educational purpose.
+
+I think these codes have serious bugs/ugly syntaxes. Please be aware of that.
 
 ### Usage
-
 - Booth's multiplication
 Run `booth.py`.
 
@@ -15,8 +21,7 @@ Run `booth_recoding.py`.
 Run `division.py`.
 
 ### Example
-If you want to multiply 3 by -3 (0011 * 1101 in binary):
-
+If you want to multiply 3 by -3 (0011 * 1101 in binary) with Booth's algorithm:
 
     $ python main.py
     This program excecutes Booth's multiplication algorithm.

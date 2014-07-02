@@ -1,11 +1,18 @@
 Booth-algorithm
 ===============
 
-The implementation of Booth's multiplication algorithm in Python.
+An implementation of Booth's multiplication algorithm in Python.
 
 ### Usage
 
-Run `main.py`.
+- Booth's multiplication
+Run `booth.py`.
+
+- Booth recoding multiplication
+Run `booth_recoding.py`.
+
+- (Non-)restoring division
+Run `division.py`.
 
 ### Example
 If you want to multiply 3 by -3 (0011 * 1101 in binary):

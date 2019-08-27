@@ -1,57 +1,68 @@
-from bitwise import *
+import math
+
+from uint import Uint, Int
+
 
 def main():
-    print("This program excecutes Booth recoding algorithm.\n")
-    print("The formula it's going to calculate is:  M * R = ?")
-    print("Input the bit length of first variable M: ", end="")
-    mlen = int(input())
-    print("Input the bit length of second variable R: ", end="")
-    rlen = int(input())
-
-    print("Input the number of first variable M: ", end="")
+    print("This program excecutes Booth recoding algorithm which calculates M * R = ??\n")
+    print("Input the number of M: ", end="")
     m = int(input())
-    if m < 0:
-        m = TwoComp( ("{0:0%db}" % (mlen + rlen)).format(m) )    #Calculate the two's complement number of m
-    else:
-        m = ("{0:0%db}" % (mlen + rlen)).format(m)   #Convert to bits and assign directly
 
-    print("Input the number of second variable R: ", end="")
+    print("Input the number of R: ", end="")
     r = int(input())
-    if r < 0:
-        r = TwoComp( ("{0:0%db}" % rlen).format(r) )
-    else:
-        r = ("{0:0%db}" % rlen).format(r)
 
-    rs = CalcBoothRecoding(r)
+    mlen, rlen = math.ceil(math.log2(m)) * 2, math.ceil(math.log2(r)) * 2
+    m, r = Int(m, mlen + rlen), Uint(r, rlen)
+
+    b = []
+    rs = r << 1
+    for x, y in zip(rs.literal.bin[2:], r.literal.bin[2:]):
+        x, y = int(x), int(y)
+        if x-y == -1:
+            b.append(2)
+        else:
+            b.append(x-y)
+
+    bl1 = ''.join("  ^"[n] for n in b)
+    bl2 = ''.join("011"[n] for n in b)
+
     print("Internal variables:")
-    print("M = %s" % m)
-    print("R = %s\n" % BoothRecToString(rs, 4)[4:])
+    print(f"M = {m}")
+    print(f"R = {r}")
+    print(f"Recoding = {bl1}")
+    print(f"           {bl2}\n")
 
-    r = list(rs)
-    r.reverse()
-
-    acc = GenZeroStr(mlen + rlen)
-
+    b.reverse()
+    acc = Uint(0, mlen + rlen)
 
     for i in range(rlen):
-        if   r[i] == "0":
-            y = GenZeroStr(len(acc))
-        elif r[i] == "1":
-            y = BitShift(m, -i)
-        elif r[i] == "2":
-            y = BitShift(TwoComp(m), -i)
-        acc = BitAdd(acc, y, len(acc))
+        y = 0
+        if b[i] == 0:
+            pass
+        elif b[i] == 1:
+            y = m << i
+            y = y.native
+        elif b[i] == 2:
+            y = -m << i
+            y = y.native
+        acc += y
 
-        if i == rlen - 1:
-            print("+)" + y[:len(y) - i])
+        f = '{:0%db}' % (mlen + rlen)
+        f = f.format(y)
+        if i != 0:
+            f = f[:-i]
+
+        if i < rlen - 1:
+            print("  " + f)
         else:
-            print("  " + y[:len(y) - i])
+            print("+)" + f)
     else:
-        print("  " + "-" * len(y))
-        print("  " + acc)
+        print("  " + "-" * acc.bits)
+        print("  " + acc.literal.bin[2:])
         print("")
 
-    print("The answer is: %s" % acc)
+    print(f"The answer is: {acc.literal.bin}")
+
 
 if __name__ == "__main__":
     main()
